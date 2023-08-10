@@ -8,14 +8,6 @@ mamba activate pcreactor
 pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
-## TMAP Visualization
-
-[TMAP](work/cluster_tmap/TMAP.ipynb)
-
-## Acknowledgements
-
-- This is work is based on the [Biocatalysis Model]() published on [Nature Communications]()
-
 ## Usage
 
 ### Data Preprocessing
@@ -66,20 +58,23 @@ pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 ### Detailed Steps
 
-- 实验步骤:
-  - 创建目录 `raw` 并放入 5 个 `xlsx` 文件
-  - `data/biocatalysis/pre.ipynb`
-    - 数据文件格式转化: `*.xlsx` -> `data.csv`
-  - `data/biocatalysis/get_data.ipynb`
-    - 反应格式转化, 得到 `data_biocatalysis.csv`
-  - Rule Filter: Copy `molecules.txt` and `patterns.txt` to `data/biocatalysisV4`
-  - Encode SMILES and Build Vocabulary:
-    - `bash cv.sh`: 得到 5 折 CV 的反应文本数据
-    - `pre.sh i j`: i level, j fold
-    - Output Directory: `preprocessing` with suffix(EC level and fold)
-  - 训练: `train.sh i j`
-    - Evaluation and Get Results:
-      - `after.sh i j`
-      - 输出目录: out
-  - 结果分析: `plot_results.ipynb`
-    - 图片输出在: `imgs`
+Steps
+
+1. `data/biocatalysis/pre.ipynb`: Tranform data file format from `*.xlsx` to `data.csv`
+2. `data/biocatalysis/get_data.ipynb`: Transform reaction format and get `data_biocatalysis.csv`
+3. Rule Filter: Copy `molecules.txt` and `patterns.txt` to `data/biocatalysisV4`
+4. Encode SMILES and Build Vocabulary:
+  - `bash cv.sh`: Prepare CV datasets
+  - `pre.sh i j`: i level, j fold
+  - Output Directory: `preprocessing` with suffix(EC level and fold)
+5. Training: `train.sh i j`
+6. Evaluation and Get Results: `after.sh i j` -> out/
+7. Analyze results: `plot_results.ipynb` -> `imgs`
+
+## TMAP Visualization
+
+[TMAP](work/cluster_tmap/TMAP.ipynb)
+
+## Acknowledgements
+
+- This is work is based on the [Biocatalysis Model]() published on [Nature Communications]()
